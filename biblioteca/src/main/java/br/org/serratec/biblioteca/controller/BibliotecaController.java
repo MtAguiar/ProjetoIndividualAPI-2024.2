@@ -15,13 +15,14 @@ import java.util.Optional;
 @RequestMapping("/livros")
 
 public class BibliotecaController {
+
     @Autowired
     private LivroRepository lR;
 
     @GetMapping
     public List<Livro> listarTodosLivros() {
         List<Livro> listaDeLivros = lR.findAll();
-        return listaDeLivros ;
+        return listaDeLivros;
     }
 
     @GetMapping("/{id}")
@@ -63,9 +64,13 @@ public class BibliotecaController {
         return ResponseEntity.noContent().build();
 
     }
+    //Adicional
+    @DeleteMapping("/remover-todos")
+    public ResponseEntity<Void> removerTodos() {
+        lR.deleteAll();
+        return ResponseEntity.noContent().build();
 
-
+    }
 }
-
 
 
